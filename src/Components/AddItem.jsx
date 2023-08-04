@@ -1,24 +1,21 @@
-import React ,{useContext, useEffect, useRef} from 'react'
+import React ,{useContext, useRef} from 'react'
 import Context from '../store/Context';
 import DisplayItems from './DisplayItems';
+ import Cart from './Cart';
 
 const AddItem = () => {
     const context=useContext(Context);
-    const shoeNameInput =useRef();
+    const medicineNameInput =useRef();
     const descriptionInput =useRef();
     const priceInput =useRef();
-    const shoeLInput =useRef();
-    const shoeMInput =useRef();
-    const shoeSInput =useRef();
+    const quantity =useRef(); 
     const submitHandler = (e) => {
         e.preventDefault(); 
         const item={
-            shoeName: shoeNameInput.current.value,
+            medicineName: medicineNameInput.current.value,
             description:descriptionInput.current.value,
             price:priceInput.current.value,
-            lQuantity:shoeLInput.current.value,
-            mQuantity:shoeMInput.current.value,
-            sQuantity:shoeSInput.current.value,
+            quantity:quantity.current.value, 
          }
         console.log(item);
         context.addItems(item);
@@ -30,8 +27,8 @@ const AddItem = () => {
     <div>
         <form   onSubmit={submitHandler}>
             <div>
-            <label htmlFor="">Shoename</label>
-            <input type="text"  ref={shoeNameInput}/>
+            <label htmlFor="">Medicine Name</label>
+            <input type="text"  ref={medicineNameInput}/>
             </div>
 
             <div>
@@ -43,24 +40,15 @@ const AddItem = () => {
             <label htmlFor="">Price</label>
             <input type="text" ref={priceInput} />
             </div>
-
-            <div>
+ 
              <div>
-                <label htmlFor="">L</label>
-                <input type="text"  ref={shoeLInput}/>
-             </div>
-             <div>
-                <label htmlFor="">M</label>
-                <input type="text" ref={shoeMInput} />
-             </div>
-             <div>
-                <label htmlFor="">S</label>
-                <input type="text" ref={shoeSInput} />
-             </div>
-            </div>
+                <label htmlFor="">Quantity</label>
+                <input type="text" ref={quantity} />
+             </div> 
             <button>Add Product</button>
         </form>
         <DisplayItems/>
+        <Cart/>
      </div>
   )
 }
